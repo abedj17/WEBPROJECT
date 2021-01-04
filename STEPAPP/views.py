@@ -25,6 +25,7 @@ from . import models
 def index(request):
     print("""""""""""""""""""""""""""""""""""""")
     Teachers = models.Teacher.objects.all()
+    print(1)
     return render(request, "profileStudent.html", {'Teachers': Teachers})
 
 
