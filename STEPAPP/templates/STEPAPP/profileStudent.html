@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% block title %}Teacher Records{% endblock title %}
+
+{% block content %}
+ <div class="col-md-12">
+        <div class="table-responsive">
+  <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+            <thead>
+                <th><input type="checkbox" id="checkall" /></th>
+                <th>ID</th>
+                <th>Teacher Name</th>
+                <th>Teacher Email</th>
+                <th>Teacher subject</th>
+                <th>Teacher phone number</th>
+             </thead>
+   <tbody>
+
+   {% for Teacher in Teachers %}
+    <tr>
+     <td><input type="checkbox" class="checkthis" /></td>
+     <td>{{ Teacher.5 }}</td>
+     <td>{{ Teacher.2 }} {{ Teacher.3 }}</td>
+     <td>{{ Teacher.4 }}</td>
+     <td>{{ Teacher.6 }}</td>
+     <td>{{ Teacher.7 }}</td>
+    </tr>
+   {% endfor %}
+   </tbody>
+
+  </table>
+        </div>
+    </div>
+{% endblock content %}
+
+</body>
+</html>
