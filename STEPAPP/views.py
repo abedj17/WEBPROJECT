@@ -135,3 +135,5 @@ def StudentView(request):
     conn.close()
     return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})
 
+def logoutUser(request):
+	return redirect('home-page')
