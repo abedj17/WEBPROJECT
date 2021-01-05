@@ -12,7 +12,7 @@ from django.contrib import admin
 #     return redirect(request,'STEP/register')
 # return render(request,'STEP/login.html')
 global user
-user = ''
+user = ()
 
 # ******************************************************************
 # from django.shortcuts import render, redirect
@@ -22,11 +22,6 @@ from . import models
 
 # # Create your views here.
 #
-def index(request):
-    print("""""""""""""""""""""""""""""""""""""")
-    Teachers = models.Teacher.objects.all()
-    return render(request, "profileStudent.html", {'Teachers': Teachers})
-
 
 '''
 def edit(request, id):
@@ -72,23 +67,24 @@ def loginView(request):
         username1 = request.POST['username']
         password1 = request.POST['password']
         if a == '2':
-            cur.execute("SELECT username, password FROM TeacherDetails")
+            cur.execute("SELECT * FROM TeacherDetails")
         if a == '3':
-            cur.execute("SELECT username, password FROM StudentDetails")
+            cur.execute("SELECT * FROM StudentDetails")
         if a == '4':
-            cur.execute("SELECT username, password FROM AdminDetails")
+            cur.execute("SELECT * FROM AdminDetails")
         data = cur.fetchall()
         found = False
-        data2 = (dict(data))
+        #data2 = (dict(data))
         conn.close()
-        if username1 in data2.keys() and password1 == str(int(data2[username1])):
-            user = username1
-            found = True
-
+        for i in data:
+        #if username1 in data2.keys() and password1 == str(int(data2[username1])):
+            if username1 in i and str(int(password1)) in i:
+                user = i
+                found = True
         if found and a == '3':
-            return render(request, 'STEPAPP/profileStudent.html')
+            return render(request, 'STEPAPP/profileStudent.html',{"name":user[2],"lname":user[3]})
         if found and a=='2':
-            return render(request, 'STEPAPP/profile.html')
+            return render(request, 'STEPAPP/profile.html',{"name":user[2],"lname":user[3]})
         else:
             messages.error(request, 'Wrong username or password', extra_tags='safe')
             return render(request, 'STEPAPP/login.html')
@@ -131,3 +127,11 @@ def registerView(request):
 def profileVeiw(request):
     if user != '':
         return render(request, 'STEPAPP/profile.html')
+def StudentView(request):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM TeacherDetails")
+    Teachers=cur.fetchall()
+    conn.close()
+    return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})
+
