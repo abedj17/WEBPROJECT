@@ -1,0 +1,73 @@
+{%  extends 'STEP/mainadmin.html' %}
+
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Teachers</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Choose</th>
+							<th>Student's ID</th>
+							<th>Name</th>
+							<th>Email</th>
+                            <th>Subject</th>
+                            <th>Phone Number</th>
+						</tr>
+
+						{% for Student in Students %}
+                        <tr>
+                         <td><input type="checkbox" class="checkthis" /></td>
+                         <td>{{ Teacher.5 }}</td>
+                         <td>{{ Teacher.2 }} {{ Teacher.3 }}</td>
+                         <td>{{ Teacher.4 }}</td>
+                         <td>{{ Teacher.6 }}</td>
+                         <td>{{ Teacher.7 }}</td>
+                        </tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+    <br><br>
+	<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Students</h5>
+				</div>
+				<div class="card card-body">
+						<table class="table">
+						<tr>
+							<th>Choose</th>
+							<th>Teachers's ID</th>
+							<th>Name</th>
+							<th>Email</th>
+                            <th>Subject</th>
+                            <th>Phone Number</th>
+						</tr>
+
+						{% for Teacher in Teachers %}
+                        <tr>
+                         <td><input type="checkbox" class="checkthis" /></td>
+                         <td>{{ Teacher.5 }}</td>
+                         <td>{{ Teacher.2 }} {{ Teacher.3 }}</td>
+                         <td>{{ Teacher.4 }}</td>
+                         <td>{{ Teacher.6 }}</td>
+                         <td>{{ Teacher.7 }}</td>
+                        </tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+{% endblock content %}
