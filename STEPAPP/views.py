@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import admin
 
@@ -60,7 +61,7 @@ def create_connection(db_file):
 
 
 def loginView(request):
-    conn = create_connection("mydb.db")
+    conn = create_connection("step.db")
     cur = conn.cursor()
     if request.method == 'POST':
         a = request.POST['select1']
@@ -82,9 +83,9 @@ def loginView(request):
                 user = i
                 found = True
         if found and a == '3':
-            return render(request, 'STEPAPP/profileStudent.html',{"name":user[2],"lname":user[3]})
+            return redirect('StudentView')
         if found and a=='2':
-            return render(request, 'STEPAPP/profile.html',{"name":user[2],"lname":user[3]})
+            return redirect('TeacherView')
         else:
             messages.error(request, 'Wrong username or password', extra_tags='safe')
             return render(request, 'STEPAPP/login.html')
@@ -93,7 +94,7 @@ def loginView(request):
 
 
 def registerView(request):
-    conn = create_connection("mydb.db")
+    conn = create_connection("step.db")
     cur = conn.cursor()
     if request.method == 'POST':
         username1 = request.POST['username']
@@ -126,14 +127,26 @@ def registerView(request):
 
 def profileVeiw(request):
     if user != '':
-        return render(request, 'STEPAPP/profile.html')
+        return render(request, 'STEPAPP/home.html')
+
+
 def StudentView(request):
-    conn = create_connection("mydb.db")
+    conn = create_connection("step.db")
     cur = conn.cursor()
     cur.execute("SELECT * FROM TeacherDetails")
-    Teachers=cur.fetchall()
+    Teachers = cur.fetchall()
     conn.close()
     return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})
 
+def TeacherView(request):
+    conn = create_connection("step.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM StudentDetails")
+    Students = cur.fetchall()
+    conn.close()
+    return render(request, "STEPAPP/profileTeacher.html", {'Students': Students})
+
 def logoutUser(request):
 	return redirect('home-page')
+
+

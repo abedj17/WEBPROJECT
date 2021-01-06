@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Teacher(models.Model):
+class Teacherr(models.Model):
     password = models.CharField(max_length=100)
     username = models.CharField(max_length=100)
     firstname = models.CharField(max_length=100)
