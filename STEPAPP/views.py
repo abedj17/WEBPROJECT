@@ -15,6 +15,35 @@ from django.contrib import admin
 global user
 user = ()
 
+# ******************************************************************
+# from django.shortcuts import render, redirect
+# #from STEP.STEPAPP.forms import TeacherForm
+#from STEP.STEPAPP.models import Teacher
+from . import models
+
+# # Create your views here.
+#
+
+'''
+def edit(request, id):
+    Teacher = Teacher.objects.get(id=id)
+    return render(request,'edit.html', {'employee':Teacher})
+def update(request, id):
+    employee = Teacher.objects.get(id=id)
+    form = TeacherForm(request.POST, instance = employee)
+    if form.is_valid():
+        form.save()
+        return redirect("/")
+    return render(request, 'edit.html', {'employee': employee})
+def destroy(request, id):
+    employee = Teacher.objects.get(id=id)
+    employee.delete()
+    return redirect("/")
+'''
+
+
+# ******************************************************************
+
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -46,8 +75,10 @@ def loginView(request):
             cur.execute("SELECT * FROM AdminDetails")
         data = cur.fetchall()
         found = False
+        #data2 = (dict(data))
         conn.close()
         for i in data:
+        #if username1 in data2.keys() and password1 == str(int(data2[username1])):
             if username1 in i and str(int(password1)) in i:
                 user = i
                 found = True
