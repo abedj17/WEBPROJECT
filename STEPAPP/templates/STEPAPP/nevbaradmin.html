@@ -20,7 +20,7 @@
         <a class="nav-link" href="{% url 'home-page' %}">HOME</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'TeacherView' %}">Teacher</a>
+        <a class="nav-link" href="{% url 'Teachers' %}">Teacher</a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="{% url 'StudentView' %}">Student</a>
@@ -28,7 +28,7 @@
     </ul>
   </div>
 
-  <span class="hello-msg">Hello, {{request.2}}</span>
+  <span class="hello-msg">Hello Admin, </span>
   <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
 
 </nav>

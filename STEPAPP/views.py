@@ -72,7 +72,7 @@ def loginView(request):
         elif found and a == '2':
             return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3]})
         elif found and a == '4':
-            return render(request, 'STEPAPP/nevbaradmin.html')
+            return redirect('adminView')
         else:
             messages.error(request, 'Wrong username or password', extra_tags='safe')
             return render(request, 'STEPAPP/login.html')
@@ -92,8 +92,7 @@ def loginView(request):
     else:
         return render(request, 'STEPAPP/login.html')
 
-def adminView(request):
-    return render(request, 'STEPAPP/nevbaradmin.html')
+
 def registerView(request):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
@@ -150,19 +149,32 @@ def TeacherView(request):
     conn.close()
     return render(request, "STEPAPP/profile.html", {'Students': Students})
 
-def logoutUser(request):
-	return redirect('home-page')
-
-'''def adminview(request):
+def Teachers(request):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
     cur.execute("SELECT * FROM StudentDetails")
     Students = cur.fetchall()
     conn.close()
     return render(request, "STEPAPP/profileTeacher.html", {'Students': Students})
+
+def logoutUser(request):
+	return redirect('home-page')
+
+def adminView(request):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
-    cur.execute("SELECT * FROM TeacherDetails")
-    Teachers = cur.fetchall()
+    a = cur.execute("SELECT * FROM StudentDetails")
+    Students = a.fetchall()
+    b = cur.execute("SELECT * FROM TeacherDetails")
+    teachers = b.fetchall()
     conn.close()
-    return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})'''
+    return render(request, "STEPAPP/profileAdmin.html", {'Students': Students,'teachers': teachers})
+
+
+# def deleteUser(request,id):
+#     conn = create_connection("mydb.db")
+#     cur = conn.cursor()
+#     cur.execute("delete  FROM StudentDetails where StudentDetails.id = "+str(id))
+#     return redirect('adminView')
+
+
