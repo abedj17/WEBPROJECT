@@ -19,30 +19,8 @@ user = ()
 # from django.shortcuts import render, redirect
 # #from STEP.STEPAPP.forms import TeacherForm
 #from STEP.STEPAPP.models import Teacher
-from . import models
-
-# # Create your views here.
-#
-
-'''
-def edit(request, id):
-    Teacher = Teacher.objects.get(id=id)
-    return render(request,'edit.html', {'employee':Teacher})
-def update(request, id):
-    employee = Teacher.objects.get(id=id)
-    form = TeacherForm(request.POST, instance = employee)
-    if form.is_valid():
-        form.save()
-        return redirect("/")
-    return render(request, 'edit.html', {'employee': employee})
-def destroy(request, id):
-    employee = Teacher.objects.get(id=id)
-    employee.delete()
-    return redirect("/")
-'''
 
 
-# ******************************************************************
 
 
 def create_connection(db_file):
@@ -61,12 +39,12 @@ def create_connection(db_file):
 
 
 def loginView(request):
-    conn = create_connection("step.db")
-    cur = conn.cursor()
     if request.method == 'POST':
         a = request.POST['select1']
         username1 = request.POST['username']
         password1 = request.POST['password']
+        conn = create_connection("mydb.db")
+        cur = conn.cursor()
         if a == '2':
             cur.execute("SELECT * FROM TeacherDetails")
         if a == '3':
@@ -77,24 +55,47 @@ def loginView(request):
         found = False
         #data2 = (dict(data))
         conn.close()
-        for i in data:
-        #if username1 in data2.keys() and password1 == str(int(data2[username1])):
-            if username1 in i and str(int(password1)) in i:
-                user = i
-                found = True
+        print(username1,password1)
+        print("----------")
+        print(data)
+        if a=='2' or a=='3':
+            for i in data:
+                if username1 in i and str(int(password1)) in i:
+                    user = i
+                    found = True
+        else:
+            data2 = (dict(data))
+            if data2[str(password1)]==str(username1):
+                found=True
         if found and a == '3':
             return redirect('StudentView')
-        if found and a =='2':
-            return redirect('TeacherView')
+        elif found and a == '2':
+            return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3]})
+        elif found and a == '4':
+            return render(request, 'STEPAPP/nevbaradmin.html')
         else:
             messages.error(request, 'Wrong username or password', extra_tags='safe')
             return render(request, 'STEPAPP/login.html')
+       # # if username1 in data2.keys() and password1 == str(int(data2[username1])):
+       #      if username1 in i and str(int(password1)) in i:
+       #          user = i
+       #          found = True
+       #  if found and a == '3':
+       #      return redirect('StudentView')
+       #  if found and a =='2':
+       #      return redirect('TeacherView')
+       #  if found and a=='4':
+       #      return redirect('TeacherView','StudentView')
+       #  else:
+       #      messages.error(request, 'Wrong username or password', extra_tags='safe')
+       #      return render(request, 'STEPAPP/login.html')
     else:
         return render(request, 'STEPAPP/login.html')
 
-
+def adminView(request):
+    return render(request, 'STEPAPP/nevbaradmin.html')
 def registerView(request):
-    conn = create_connection("step.db")
+    conn = create_connection("mydb.db")
     cur = conn.cursor()
     if request.method == 'POST':
         username1 = request.POST['username']
@@ -106,21 +107,24 @@ def registerView(request):
         subject1 = request.POST['subject']
         phonenumber1 = request.POST['phonenumber']
         a = request.POST['select1']
-        if a == '2':
+        '''if a == '2':
             cur.execute("SELECT username, password FROM TeacherDetails")
         if a == '3':
             cur.execute("SELECT username, password FROM StudentDetails")
         data = cur.fetchall()
         found = False
         data2 = (dict(data))
-        cur = conn.cursor()
+        cur = conn.cursor()'''
+        print(password1)
+        print("INSERT INTO TeacherDetails VALUES( " +"'" + password1 +"'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " +"'" + id1 +"'" + " , " + "'" + subject1 + "'" + " , " +"'" + phonenumber1 +"'" + " )")
         if a == '2':
             cur.execute(
-                "INSERT INTO TeacherDetails VALUES( " + "'" + password1 + "'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " + id1 + " , " + "'" + subject1 + "'" + "," + phonenumber1 + " )")
+                "INSERT INTO TeacherDetails VALUES( " +"'" + password1 +"'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " +"'" + id1 +"'" + " , " + "'" + subject1 + "'" + " , " +"'" + phonenumber1 +"'" + " )")
+            conn.commit()
         if a == '3':
             cur.execute(
-                "INSERT INTO StudentDetails VALUES( " + "'" + password1 + "'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " + id1 + " , " + "'" + subject1 + "'" + "," + phonenumber1 + " )")
-        conn.commit()
+                "INSERT INTO StudentDetails VALUES( " +"'" + password1 +"'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " +"'" + id1 +"'" + " , " + "'" + subject1 + "'" + " , " +"'" + phonenumber1 +"'" + " )")
+            conn.commit()
     conn.close()
     return render(request, 'STEPAPP/register.html')
 
@@ -131,7 +135,7 @@ def profileVeiw(request):
 
 
 def StudentView(request):
-    conn = create_connection("step.db")
+    conn = create_connection("mydb.db")
     cur = conn.cursor()
     cur.execute("SELECT * FROM TeacherDetails")
     Teachers = cur.fetchall()
@@ -139,14 +143,26 @@ def StudentView(request):
     return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})
 
 def TeacherView(request):
-    conn = create_connection("step.db")
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM StudentDetails")
+    Students = cur.fetchall()
+    conn.close()
+    return render(request, "STEPAPP/profile.html", {'Students': Students})
+
+def logoutUser(request):
+	return redirect('home-page')
+
+'''def adminview(request):
+    conn = create_connection("mydb.db")
     cur = conn.cursor()
     cur.execute("SELECT * FROM StudentDetails")
     Students = cur.fetchall()
     conn.close()
     return render(request, "STEPAPP/profileTeacher.html", {'Students': Students})
-
-def logoutUser(request):
-	return redirect('home-page')
-
-
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM TeacherDetails")
+    Teachers = cur.fetchall()
+    conn.close()
+    return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})'''
