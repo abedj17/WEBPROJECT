@@ -10,5 +10,4 @@ urlpatterns = [
     path('registerView', views.registerView, name='register'),
     path('loginView/', views.loginView, name='logout'),
     path('StudentView/', views.StudentView, name='StudentView'),
-    # path('profileView',views.profileView,name='profile'),
 ]
