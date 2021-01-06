@@ -1,37 +1,152 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block head %}
-        <title>Base</title>
-        {% endblock %}
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home-page' %}">Log in</a></li>
-                    <li><a href="{% url 'register' %}">Sign up</a></li>
-
-                </ul>
-
-            </div>
+<!DOCTYPE html>
+<!--Code by Divinector (www.divinectorweb.com)-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How to Create responsive Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="" alt="">
         </div>
+<ul class="nav-area">
+<li><a href="{% url 'home-page' %}">Log in</a></li>
+<li><a href="{% url 'register' %}">Sign up</a></li>
+
+
+
+</ul>
+</div>
+<div class="welcome-text">
+        <h1>
+Hello <span>to our Website</span></h1>
+
     </div>
-    </body>
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</header>
+
+</body>
+</html>
+
+<style>
+  body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: gainsboro !important;
+		}
+		}
+    body {
+	    font-family: 'Poppins', sans-serif;
+    }
+    .wrapper {
+	    width: 1170px;
+	    margin: auto;
+    }
+    header {
+	    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://i.postimg.cc/WbcwDZv4/project.png.jpg);
+	    height: 100vh;
+	    -webkit-background-size: cover;
+	    background-size: cover;
+	    background-position: center center;
+	    position: relative;
+    }
+    .nav-area {
+    	float: right;
+    	list-style: none;
+	    margin-top: 30px;
+    }
+    .nav-area li {
+    	display: inline-block;
+    }
+    .nav-area li a {
+	    color: #fff;
+	    text-decoration: none;
+	    padding: 5px 20px;
+	    font-family: poppins;
+	    font-size: 16px;
+	    text-transform: uppercase;
+    }
+    .nav-area li a:hover {
+    	background: #fff;
+	    color: #333;
+    }
+    .logo {
+	    float: left ;
+    }
+    .logo img {
+
+    	width: 100%;
+	    padding: 15px 0;
+    }
+    .welcome-text {
+	    position: absolute;
+	    width: 600px;
+	    height: 300px;
+	    margin: 20% 30%;
+	    text-align: center;
+    }
+    .welcome-text h1 {
+	    text-align: center;
+	    color: white;
+	    text-transform: uppercase;
+	    font-size: 60px;
+    }
+    .welcome-text h1 span {
+	    color: rosybrown;
+    }
+    .welcome-text a {
+	    border: 1px solid #fff;
+	    padding: 10px 25px;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    font-size: 14px;
+	    margin-top: 20px;
+	    display: inline-block;
+	    color: #fff;
+    }
+    .welcome-text a:hover {
+    	background: #fff;
+	    color: #333;
+    }
+    /*resposive*/
+
+    @media (max-width:600px) {
+	    .wrapper {
+	    	width: 100%;
+	    }
+	    .logo {
+	    	float: none;
+	    	width: 50%;
+		    text-align: center;
+		    margin: auto;
+	    }
+	    img {
+	    	width:1px;
+	    }
+	    .nav-area {
+		    float: none;
+	    	margin-top: 0;
+	    }
+	    .nav-area li a {
+		    padding: 5px;
+	    	font-size: 11px;
+	    }
+	    .nav-area {
+	    	text-align: center;
+	    }
+	    .welcome-text {
+	    	width: 100%;
+		    height: auto;
+		    margin: 30% 0;
+	    }
+	    .welcome-text h1 {
+	    	font-size: 30px;
+	    }
+}
+</style>
 </html>
