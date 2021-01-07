@@ -170,11 +170,33 @@ def adminView(request):
     conn.close()
     return render(request, "STEPAPP/profileAdmin.html", {'Students': Students,'teachers': teachers})
 
+def deleteStudent(request,id):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    a = cur.execute("SELECT * FROM StudentDetails")
+    Students = a.fetchall()
+    if request.method=='POST':
+        delete = ("DELETE FROM StudentDetails WHERE id=?")
+        cur.execute(delete, (str(id),))
+        conn.commit()
+        return redirect('adminView')
+    context={'Students':Students}
+    return render(request, "STEPAPP/delete.html", context)
 
-# def deleteUser(request,id):
-#     conn = create_connection("mydb.db")
-#     cur = conn.cursor()
-#     cur.execute("delete  FROM StudentDetails where StudentDetails.id = "+str(id))
-#     return redirect('adminView')
+
+def deleteTeacher(request,id):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    b = cur.execute("SELECT * FROM TeacherDetails")
+    teachers = b.fetchall()
+    if request.method=='POST':
+        delete = ("DELETE FROM TeacherDetails WHERE id=?")
+        cur.execute(delete, (str(id),))
+        conn.commit()
+        return redirect('adminView')
+    context={'teachers':teachers}
+    return render(request, "STEPAPP/deleteTeacher.html", context)
+
+
 
 
