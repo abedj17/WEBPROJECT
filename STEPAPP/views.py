@@ -139,7 +139,7 @@ def StudentView(request):
     cur.execute("SELECT * FROM TeacherDetails")
     Teachers = cur.fetchall()
     conn.close()
-    return render(request, "STEPAPP/profileStudent.html", {'Teachers': Teachers})
+    return render(request, "STEPAPP/profileStudent.html",{'Teachers': Teachers})
 
 def TeacherView(request):
     conn = create_connection("mydb.db")
@@ -147,6 +147,7 @@ def TeacherView(request):
     cur.execute("SELECT * FROM StudentDetails")
     Students = cur.fetchall()
     conn.close()
+    a=('Teacher')
     return render(request, "STEPAPP/profile.html", {'Students': Students})
 
 def Teachers(request):
