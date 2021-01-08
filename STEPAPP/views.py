@@ -122,6 +122,8 @@ def Teachers(request):
 def logoutUser(request):
 	return redirect('home-page')
 
+def profile(request):
+	return redirect('TeacherView')
 
 def adminView(request):
     conn = create_connection("mydb.db")
@@ -178,27 +180,6 @@ def updateStudent(request,id):
     return render(request, "STEPAPP/updateStudent.html", {'Students': b})
 
 
-def meeting(request):
-    conn = create_connection("mydb.db")
-    cur = conn.cursor()
-    if request.method == 'POST':
-        studentname1 = request.POST['studentname']
-        teachername1 = request.POST['teachername']
-        subject1 = request.POST['subject']
-        date1 = request.POST['date']
-        studentnumber1 = request.POST['studentnumber']
 
-        cur.execute("INSERT INTO MeetingDetails VALUES( " + "'" + studentname1 + "'" + " , " + "'" + teachername1 + "'" + " , " + "'" + subject1 + "'" + " , " + "'" + date1 + "'" + " , " + "'" + studentnumber1 + "'" + " )")
-        conn.commit()
-    conn.close()
-    return render(request, 'STEPAPP/meeting.html')
-
-def meetingView(request):
-    conn = create_connection("mydb.db")
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM MeetingDetails")
-    Meetings = cur.fetchall()
-    conn.close()
-    return render(request, "STEPAPP/meetingView.html", {'Meetings': Meetings})
 
 
