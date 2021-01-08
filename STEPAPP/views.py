@@ -120,11 +120,11 @@ def Teachers(request):
     return render(request, "STEPAPP/profileTeacher.html", {'Students': Students})
 
 def logoutUser(request):
-	return redirect('home-page')
+    return redirect('home-page')
 
 
 def profile(request):
-	return redirect('TeacherView')
+    return redirect('TeacherView')
 
 
 def adminView(request):
