@@ -1,0 +1,46 @@
+{%  extends 'STEPAPP/main.html' %}
+
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>MEETINGS</h5>
+					<hr>
+					<div class="card card-body">
+						<hr>
+					<div class="card card-body">
+					<a class="btn btn-warning  btn btn-block" href="">Meetings Details</a>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Choose</th>
+							<th>Student Name</th>
+							<th>Teacher Name</th>
+                            <th>Subject</th>
+                            <th>Meeting Date</th>
+                            <th>Student Number</th>
+						</tr>
+
+						{% for Meeting in Meetings %}
+                        <tr>
+                         <td><input type="checkbox" class="checkthis" /></td>
+                         <td>{{ Meeting.0 }}</td>
+                         <td>{{ Meeting.1 }}</td>
+                         <td>{{ Meeting.2 }}</td>
+                         <td>{{ Meeting.3}}</td>
+                         <td>{{ Meeting.4}}</td>
+
+						{% endfor %}
+						
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}
