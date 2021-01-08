@@ -185,6 +185,7 @@ def deleteStudent(request,id):
     return render(request, "STEPAPP/delete.html", context)
 
 
+
 def deleteTeacher(request,id):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
@@ -197,6 +198,21 @@ def deleteTeacher(request,id):
         return redirect('adminView')
     context={'teachers':teachers}
     return render(request, "STEPAPP/deleteTeacher.html", context)
+
+
+def updateStudent(request,id):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    a = cur.execute("SELECT * FROM StudentDetails")
+    Students = a.fetchall()
+    if request.method == 'POST':
+        update = """UPDATE StudentDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
+        cur = conn.cursor()
+        cur.execute(update, str(id))
+        conn.commit()
+        cur.close()
+    return render(request, "STEPAPP/updateStudent.html", {'Students': Students})
+
 
 
 

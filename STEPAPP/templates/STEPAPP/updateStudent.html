@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%  extends 'STEPAPP/mainadmin.html' %}
+{% load static %}
+{% block content %}
 
+<body>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+            {% for Student in Students %}
+			<form action="{% url 'updateStudent' Student.5 %}" method="POST" class="post-form">
+                <input type="hidden" name="id" id="id" required maxlength="20" value="{{Student.5}}" />
+            {% endfor %}
+                  {%csrf_token %}
+                <div class="container">
+             <br>
+                <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                <h3>Enter Details</h3>
+                </div>
+               </div>
+
+              <div class="form-group row">
+                   <label class="col-sm-2 col-form-label">First name:</label>
+                   <div class="col-sm-4">
+                        <input type="text" name="firstname" value="{{Student.2}}">
+                   </div>
+               </div>
+                     <div class="form-group row">
+                   <label class="col-sm-2 col-form-label">Lastname:</label>
+                   <div class="col-sm-4">
+                        <input type="text" name="lastname" value="{{Student.3}}">
+                   </div>
+               </div>
+                     <div class="form-group row">
+                   <label class="col-sm-2 col-form-label">Subject:</label>
+                   <div class="col-sm-4">
+                        <input type="text" name="subject" value="{{Student.6}}">
+                   </div>
+               </div>
+                     <div class="form-group row">
+                   <label class="col-sm-2 col-form-label">Number:</label>
+                   <div class="col-sm-4">
+                        <input type="text" name="phonenumber" value="{{Student.7}}">
+                   </div>
+               </div>
+
+                    <div class="form-group row">
+                    <label class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-4">
+                    <a class="btn btn-warning" href="{% url 'adminView' %}">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+               </div>
+                </div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
 </body>
-</html>
+
+{% endblock %}
