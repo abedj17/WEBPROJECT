@@ -160,11 +160,12 @@ def deleteTeacher(request,id):
     context={'teachers':teachers}
     return render(request, "STEPAPP/deleteTeacher.html", context)
 
-
 def updateStudent(request,id):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
     a = cur.execute("SELECT * FROM StudentDetails")
+    b = cur.execute("select * from StudentDetails where StudentDetails.id = "+id)
+    st = b.fetchall()
     Students = a.fetchall()
     if request.method == 'POST':
         update = """UPDATE StudentDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
@@ -172,7 +173,8 @@ def updateStudent(request,id):
         cur.execute(update, str(id))
         conn.commit()
         cur.close()
-    return render(request, "STEPAPP/updateStudent.html", {'Students': Students})
+
+    return render(request, "STEPAPP/updateStudent.html", {'Students': b})
 
 
 
