@@ -122,6 +122,9 @@ def Teachers(request):
 def logoutUser(request):
 	return redirect('home-page')
 
+def profile(request):
+	return redirect('TeacherView')
+
 def adminView(request):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
