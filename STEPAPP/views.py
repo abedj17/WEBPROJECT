@@ -9,20 +9,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import admin
 
 # Create your views here.
-# def login(request):
-#     return redirect(request,'STEP/register')
-# return render(request,'STEP/login.html')
 global user
 user = ()
-
-# ******************************************************************
-# from django.shortcuts import render, redirect
-# #from STEP.STEPAPP.forms import TeacherForm
-#from STEP.STEPAPP.models import Teacher
-
-
-
-
 def create_connection(db_file):
     """ create a database connection to the SQLite database
         specified by the db_file
@@ -53,11 +41,7 @@ def loginView(request):
             cur.execute("SELECT * FROM AdminDetails")
         data = cur.fetchall()
         found = False
-        #data2 = (dict(data))
         conn.close()
-        print(username1,password1)
-        print("----------")
-        print(data)
         if a=='2' or a=='3':
             for i in data:
                 if username1 in i and str(int(password1)) in i:
@@ -70,25 +54,12 @@ def loginView(request):
         if found and a == '3':
             return redirect('StudentView')
         elif found and a == '2':
-            return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3]})
+            return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3],"sub":user[6]})
         elif found and a == '4':
             return redirect('adminView')
         else:
             messages.error(request, 'Wrong username or password', extra_tags='safe')
             return render(request, 'STEPAPP/login.html')
-       # # if username1 in data2.keys() and password1 == str(int(data2[username1])):
-       #      if username1 in i and str(int(password1)) in i:
-       #          user = i
-       #          found = True
-       #  if found and a == '3':
-       #      return redirect('StudentView')
-       #  if found and a =='2':
-       #      return redirect('TeacherView')
-       #  if found and a=='4':
-       #      return redirect('TeacherView','StudentView')
-       #  else:
-       #      messages.error(request, 'Wrong username or password', extra_tags='safe')
-       #      return render(request, 'STEPAPP/login.html')
     else:
         return render(request, 'STEPAPP/login.html')
 
@@ -106,16 +77,6 @@ def registerView(request):
         subject1 = request.POST['subject']
         phonenumber1 = request.POST['phonenumber']
         a = request.POST['select1']
-        '''if a == '2':
-            cur.execute("SELECT username, password FROM TeacherDetails")
-        if a == '3':
-            cur.execute("SELECT username, password FROM StudentDetails")
-        data = cur.fetchall()
-        found = False
-        data2 = (dict(data))
-        cur = conn.cursor()'''
-        print(password1)
-        print("INSERT INTO TeacherDetails VALUES( " +"'" + password1 +"'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " +"'" + id1 +"'" + " , " + "'" + subject1 + "'" + " , " +"'" + phonenumber1 +"'" + " )")
         if a == '2':
             cur.execute(
                 "INSERT INTO TeacherDetails VALUES( " +"'" + password1 +"'" + " , " + "'" + username1 + "'" + " , " + "'" + firstname1 + "'" + " , " + "'" + lastname1 + "'" + " , " + "'" + email1 + "'" + " , " +"'" + id1 +"'" + " , " + "'" + subject1 + "'" + " , " +"'" + phonenumber1 +"'" + " )")

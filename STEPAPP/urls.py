@@ -12,7 +12,6 @@ urlpatterns = [
     path('StudentView/', views.StudentView, name='StudentView'),
     path('loginView/', views.loginView, name='home-page'),
     path('registerView', views.registerView, name='register'),
-    #path('TeacherView/', views.StudentView, name='TeacherView'),
     path('loginView/', views.loginView, name='logout'),
     path('adminView/', views.adminView, name='adminView')
 ]
