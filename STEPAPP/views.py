@@ -52,9 +52,9 @@ def loginView(request):
             if data2[str(password1)]==str(username1):
                 found=True
         if found and a == '3':
-            return redirect('StudentView')
+            return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3],"subject":user[6],"username":user[1],"email":user[4],"phone":user[7],"id":5})
         elif found and a == '2':
-            return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3],"sub":user[6]})
+            return render(request, 'STEPAPP/profile.html', {"name": user[2], "lname": user[3],"subject":user[6],"username":user[1],"email":user[4],"phone":user[7],"id":5})
         elif found and a == '4':
             return redirect('adminView')
         else:
@@ -100,6 +100,14 @@ def StudentView(request):
     cur.execute("SELECT * FROM TeacherDetails")
     Teachers = cur.fetchall()
     conn.close()
+    return render(request, "STEPAPP/profile.html",{'Teachers': Teachers})
+
+def Students(request):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM TeacherDetails")
+    Teachers = cur.fetchall()
+    conn.close()
     return render(request, "STEPAPP/profileStudent.html",{'Teachers': Teachers})
 
 def TeacherView(request):
@@ -109,7 +117,7 @@ def TeacherView(request):
     Students = cur.fetchall()
     conn.close()
     a=('Teacher')
-    return render(request, "STEPAPP/profile.html", {'Students': Students})
+    return render(request, "STEPAPP/profile.html", {'Students': Students,'name':a})
 
 def Teachers(request):
     conn = create_connection("mydb.db")

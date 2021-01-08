@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.profileVeiw, name='home'),
     path('TeacherView/', views.TeacherView, name='TeacherView'),
     path('Teachers/', views.Teachers, name='Teachers'),
+    path('Students/', views.Students, name='Students'),
     path('deleteStudent/<str:id>', views.deleteStudent, name='deleteStudent'),
     path('deleteTeacher/<str:id>', views.deleteTeacher, name='deleteTeacher'),
     path('updateStudent/<str:id>', views.updateStudent, name='updateStudent'),
