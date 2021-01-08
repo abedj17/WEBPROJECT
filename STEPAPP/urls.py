@@ -9,6 +9,7 @@ urlpatterns = [
     path('deleteStudent/<str:id>', views.deleteStudent, name='deleteStudent'),
     path('deleteTeacher/<str:id>', views.deleteTeacher, name='deleteTeacher'),
     path('updateStudent/<str:id>', views.updateStudent, name='updateStudent'),
+    path('deleteMeeting/<str:studentnumber>', views.deleteMeeting, name='deleteMeeting'),
     path('StudentView/', views.StudentView, name='StudentView'),
     path('loginView/', views.loginView, name='home-page'),
     path('meeting/', views.meeting, name='meeting'),

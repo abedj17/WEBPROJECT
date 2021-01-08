@@ -123,7 +123,6 @@ def logoutUser(request):
 	return redirect('home-page')
 
 
-
 def profile(request):
 	return redirect('TeacherView')
 
@@ -206,4 +205,15 @@ def meetingView(request):
     conn.close()
     return render(request, "STEPAPP/meetingView.html", {'Meetings': Meetings})
 
-
+def deleteMeeting(request,studentnumber):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    b = cur.execute("SELECT * FROM MeetingDetails")
+    meetings = b.fetchall()
+    if request.method=='POST':
+        delete = ("DELETE FROM MeetingDetails WHERE studentnumber=?")
+        cur.execute(delete, (str(studentnumber),))
+        conn.commit()
+        return redirect('meetingView')
+    context={'meetings':meetings}
+    return render(request, "STEPAPP/deletemeeting.html", context)

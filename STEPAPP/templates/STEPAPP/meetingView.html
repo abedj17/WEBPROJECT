@@ -24,6 +24,7 @@
                             <th>Subject</th>
                             <th>Meeting Date</th>
                             <th>Student Number</th>
+							<th>Option</th>
 						</tr>
 
 						{% for Meeting in Meetings %}
@@ -34,6 +35,9 @@
                          <td>{{ Meeting.2 }}</td>
                          <td>{{ Meeting.3}}</td>
                          <td>{{ Meeting.4}}</td>
+							<td>
+								<a href="/deleteMeeting/{{Meeting.4}}"><span class="btn btn-sm btn-danger">Delete</span></a>
+							</td>
 
 						{% endfor %}
 						
