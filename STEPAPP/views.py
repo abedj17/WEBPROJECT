@@ -27,6 +27,7 @@ def create_connection(db_file):
 
 
 def loginView(request):
+    print(1)
     if request.method == 'POST':
         a = request.POST['select1']
         username1 = request.POST['username']
