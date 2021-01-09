@@ -177,10 +177,8 @@ def deleteTeacher(request,id):
 def updateStudent(request,id):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
-    a = cur.execute("SELECT * FROM StudentDetails")
     b = cur.execute("select * from StudentDetails where StudentDetails.id = "+id)
     st = b.fetchall()
-    Students = a.fetchall()
     if request.method == 'POST':
         update = """UPDATE StudentDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
         cur = conn.cursor()
