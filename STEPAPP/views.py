@@ -224,4 +224,5 @@ def deleteMeeting(request,studentnumber):
         conn.commit()
         return redirect('meetingView')
     context={'meetings':meetings}
+
     return render(request, "STEPAPP/deletemeeting.html", context)
