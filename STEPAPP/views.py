@@ -156,7 +156,7 @@ def deleteStudent(request,id):
         cur.execute(delete, (str(id),))
         conn.commit()
         return redirect('adminView')
-    context={'Students':Students}
+    context={'Students': Students}
     return render(request, "STEPAPP/delete.html", context)
 
 
@@ -171,7 +171,7 @@ def deleteTeacher(request,id):
         cur.execute(delete, (str(id),))
         conn.commit()
         return redirect('adminView')
-    context={'teachers':teachers}
+    context={'teachers': teachers}
     return render(request, "STEPAPP/deleteTeacher.html", context)
 
 def updateStudent(request,id):
