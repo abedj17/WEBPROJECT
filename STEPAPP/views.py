@@ -187,6 +187,20 @@ def updateStudent(request,id):
         cur.close()
 
     return render(request, "STEPAPP/updateStudent.html", {'Students': b})
+def UpdateTeacher(request,id):
+    conn = create_connection("mydb.db")
+    cur = conn.cursor()
+    b = cur.execute("select * from StudentDetails where StudentDetails.id = "+id)
+    st = b.fetchall()
+    if request.method == 'POST':
+        update = """UPDATE StudentDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
+        cur = conn.cursor()
+        cur.execute(update, str(id))
+        conn.commit()
+        cur.close()
+
+    return render(request, "STEPAPP/updateStudent.html", {'Students': b})
+
 
 
 def meeting(request):
