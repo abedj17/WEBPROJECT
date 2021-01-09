@@ -20,5 +20,4 @@ urlpatterns = [
     path('adminView/', views.adminView, name='adminView'),
     path('profile/', views.profile, name='profile'),
     path('adminView/', views.adminView, name='adminView'),
-
 ]
