@@ -7,7 +7,7 @@
 	<div class="col-md-6">
 		<div class="card card-body">
             {% for Teacher in Teachers %}
-			<form action="{% url 'updateStudent' Teacher.5 %}" method="POST" class="post-form">
+			<form action="{% url 'updateTeacher' Teacher.5 %}" method="POST" class="post-form">
                 <input type="hidden" name="id" id="id" required maxlength="20" value="{{Teacher.5}}" />
             {% endfor %}
                   {%csrf_token %}

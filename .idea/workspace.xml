@@ -26,12 +26,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af7ba260-cdd7-4977-8f21-0f02c5611250" name="Default Changelist" comment="add UpdateTeacher.html and def UpdateTeacher in views.py">
-      <change afterPath="$PROJECT_DIR$/.idea/WEBPROJECT.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STEPAPP/templates/STEPAPP/UpdateTeacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/STEPAPP/templates/STEPAPP/UpdateTeacher.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STEPAPP/templates/STEPAPP/updateStudent.html" beforeDir="false" afterPath="$PROJECT_DIR$/STEPAPP/templates/STEPAPP/updateStudent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STEPAPP/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/STEPAPP/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STEPAPP/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/STEPAPP/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mydb.db" beforeDir="false" afterPath="$PROJECT_DIR$/mydb.db" afterDir="false" />
     </list>
     <list id="384087d7-b4ca-42db-8c09-d280719bd333" name="Revert &quot;add UpdateTeacher.html and def UpdateTeacher in views.py&quot;" comment="Revert &quot;add UpdateTeacher.html and def UpdateTeacher in views.py&quot;&#10;&#10;This reverts commit fadeeb37" />
@@ -50,7 +49,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\Desktop" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -142,10 +146,9 @@
                   </entry>
                 </map>
               </option>
-              <option name="COLUMN_WIDTH">
+              <option name="COLUMN_ID_WIDTH">
                 <map>
-                  <entry key="2" value="87" />
-                  <entry key="3" value="122" />
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="87" />
                 </map>
               </option>
             </State>
@@ -196,15 +199,5 @@
     <MESSAGE value="Edit" />
     <MESSAGE value="add UpdateTeacher.html and def UpdateTeacher in views.py" />
     <option name="LAST_COMMIT_MESSAGE" value="add UpdateTeacher.html and def UpdateTeacher in views.py" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1610213850134">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610213850134" />
-    <state x="555" y="128" key="VCS.ChangeListViewerDialog" timestamp="1610212337605">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="555" y="128" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1610212337605" />
   </component>
 </project>

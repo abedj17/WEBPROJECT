@@ -178,28 +178,28 @@ def updateStudent(request,id):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
     b = cur.execute("select * from StudentDetails where StudentDetails.id = "+id)
-    st = b.fetchall()
+    Students = b.fetchall()
     if request.method == 'POST':
         update = """UPDATE StudentDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
         cur = conn.cursor()
         cur.execute(update, str(id))
         conn.commit()
         cur.close()
+    return render(request, "STEPAPP/updateStudent.html", {'Students': Students})
 
-    return render(request, "STEPAPP/updateStudent.html", {'Students': b})
-def UpdateTeacher(request,id):
+
+def updateTeacher(request,id):
     conn = create_connection("mydb.db")
     cur = conn.cursor()
-    b = cur.execute("select * from StudentDetails where StudentDetails.id = "+id)
-    st = b.fetchall()
+    b = cur.execute("select * from TeacherDetails where TeacherDetails.id = "+id)
+    Teachers = b.fetchall()
     if request.method == 'POST':
-        update = """UPDATE StudentDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
+        update = """UPDATE TeacherDetails SET firstname = ?, lastname=?, subject=?, phonenumber=? """
         cur = conn.cursor()
         cur.execute(update, str(id))
         conn.commit()
         cur.close()
-
-    return render(request, "STEPAPP/updateStudent.html", {'Students': b})
+    return render(request, "STEPAPP/UpdateTeacher.html", {'Teachers': Teachers})
 
 
 
